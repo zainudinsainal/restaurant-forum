@@ -16,6 +16,11 @@ ActiveRecord::Schema.define(version: 20180212062708) do
   enable_extension "plpgsql"
 
   create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "tel"
+    t.string "address"
+    t.string "opening_hours"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
