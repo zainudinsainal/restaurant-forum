@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise', '~> 4.4', '>= 4.4.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'ffaker', '~> 2.8', '>= 2.8.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
