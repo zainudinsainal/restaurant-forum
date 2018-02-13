@@ -1,14 +1,32 @@
-<h1>Restaurant Forum Backend </h1>
-
-<ul>
-  <% @restaurants.each do |restaurant| %>
-  <li>
-    <%= restaurant.name %>
-    <%= link_to 'Show', admin_restaurant_path(restaurant) %>
-    <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
-    <%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data: {confirm:"Are you sure?"} %>
-  </li>
-  <% end %>
-</ul>
-<%= paginate @restaurants %>
-<%= link_to 'New Restaurant', new_admin_restaurant_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Restaurant Forum</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurants.each do |restaurant| %>
+          <tr>
+            <th scope="row"><%= restaurant.id %></th>
+            <td><%= restaurant.name %></td>
+            <td>
+              <%= link_to 'Show', admin_restaurant_path(restaurant) %>
+              <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
+              <%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data: {confirm:"Are you sure?"} %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%= paginate @restaurants %>
+      </div>
+    </div>
+  </div>
+</div>

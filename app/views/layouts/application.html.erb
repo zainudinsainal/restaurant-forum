@@ -9,17 +9,62 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <% if current_user %>
-      Hi, <%= current_user.email %>
-        <%= link_to('log out', destroy_user_session_path, method: :delete) %> |
-        <%= link_to('change password', edit_user_registration_path) %>
-      <% else %>
-        <%= link_to('register', new_user_registration_path) %> |
-        <%= link_to('log in', new_user_session_path) %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "Restaurant", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <% if current_user %>
+      <% if current_user.admin? %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Create New', new_admin_restaurant_path, class: 'nav-link' %>
+        </li>
+      </ul>
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+          <li class="nav-item"><%= link_to('Admin', admin_restaurants_path, class: 'nav-link') %></li>
+        <% end %>
+          <li class="navbar-text">Hi, <%= current_user.email %></li>
+          <li class="nav-item navbar-nav "><%= link_to('Log out', destroy_user_session_path, method: :delete, class: 'nav-link') %></li> 
+          <li class="nav-item navbar-nav "><%= link_to('Change password', edit_user_registration_path , class: 'nav-link') %></li>
+        <% else %>
+          <li class="navbar-nav nav-item"><%= link_to('Register', new_user_registration_path, class: 'nav-link') %></li> 
+          <li class="navbar-nav nav-item"><%= link_to('Log in', new_user_session_path, class: 'nav-link') %></li>
+      </ul>
+      
+      <% end %>
+    </div>
+    </nav>
+
+    <% if flash[:notice] %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <%= notice %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
     <% end %>
+
+    <% if flash[:alert] %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            <%= alert %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
