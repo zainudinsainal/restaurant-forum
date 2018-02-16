@@ -42,8 +42,8 @@ class Admin::RestaurantsController < ApplicationController
 
   def destroy
     @restaurant.destroy
-    redirect_to admin_restaurants_path
     flash[:alert] = "restaurant was deleted"
+    redirect_to admin_restaurants_path
   end
 
   private
