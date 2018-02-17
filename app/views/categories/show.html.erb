@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+  <ul class="nav-pills pl-auto">
+    <li class="nav-item"><%= link_to "All restaurant", root_path, class: 'nav-link' %></li>
+    <% @categories.each do |category| %>
+      <li class="nav-item"><%= link_to category.name, category_path(category), class: active_class(category) %></li>
+    <% end %>
+  </ul>
+
+    <%= render partial: "shared/restaurant_list" %>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+    
+    <!-- restaurants list,class style with restaurant-item included-->
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="restaurant-item">
+          <%= image_tag restaurant.image, class: "figure-img img-fluid mx-auto d-block" %>
+          <div class="figure-caption">
+            <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+            <p class="badge badge-secondary"><%= restaurant.category.name %><p>
+            <p><%= truncate(restaurant.description, length: 80) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+      
+    <!-- kaminari paginate bootstrap style generated -->
+    <div class="text-center">
+      <%= paginate @restaurants %>
+    </div>
+      
