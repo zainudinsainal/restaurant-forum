@@ -9,10 +9,10 @@
       <%= image_tag @restaurant.image, class: "img-fluid rounded mx-auto d-block" %>
       <br>
       <div class="card">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Opening Hour:</strong> <%= @restaurant.opening_hours %></li>
-          <li class="list-group-item">Tel:</strong> <%= @restaurant.tel %></li>
-          <li class="list-group-item">Address:</strong> <%= @restaurant.address %></li>
+        <ul class="list-unstyled">
+          <li><strong>Opening Hour:</strong> <%= @restaurant.opening_hours %></li>
+          <li><strong>Tel:</strong> <%= @restaurant.tel %></li>
+          <li><strong>Address:</strong> <%= @restaurant.address %></li>
         </ul>
       </div>
     </div>
@@ -22,14 +22,29 @@
 
     <div class="clearfix"></div>
 
-    <hr>
+   
 
   </div>
+   <hr>
 </div>
 
 <div class="container">
   <div class="row">
-   <%= form_for [@restaurant, @comment] do |f| %>
+  <div class="col-md-12">
+    <% @restaurant.comments.each do |comment| %>
+    <div>
+      <h4><%= comment.user.email.split('@').first %></h4>
+      <p><%= simple_format comment.content %></p>
+      <p class="text-muted">
+        <em><%= time_ago_in_words(comment.created_at) %> ago -</em>
+      </p>
+    </div>
+    <hr>
+    <% end %>
+  </div>
+  
+  <div class="col-md-12">
+    <%= form_for [@restaurant, @comment] do |f| %>
     <div class="form-group">
       <%= f.text_area :content, placeholder: "leave a message", class: "form-control" %>
     </div>
@@ -38,6 +53,8 @@
       <%= f.button "Cancel", type: :reset, class: "btn btn-outline-dark" %>
     </div>
   <% end %>
+  </div>
+   
   </div>
 </div>
 
