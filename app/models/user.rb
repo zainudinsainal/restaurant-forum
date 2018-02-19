@@ -8,6 +8,7 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  validates_presence_of :name
   has_many :comments
   mount_uploader :avatar, AvatarUploader
 
