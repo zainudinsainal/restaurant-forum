@@ -18,14 +18,22 @@
       </div>
     </div>
   </div>
-    <div class="card mt-4">
-  <div class="card-header">
-    <h3><strong><%= @commented_restaurants.count %></strong> commented restaurants</h3>
+  <div class="card mt-4">
+    <div class="card-header">
+      <h3><strong><%= @commented_restaurants.count %></strong> commented restaurants</h3>
+    </div>
+    <div class="card-body">
+      <% @commented_restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant) do %>
+        <div class="my-restaurant">
+          <div>
+            <%= image_tag restaurant.image, class: "img-fluid rounded mx-auto" %>
+          </div>
+          <h5><%= restaurant.name %></h5>
+        </div>
+        <% end %>
+
+      <% end %>
+    </div>
   </div>
-  <div class="card-body">
-    <% @commented_restaurants.each do |restaurant| %>
-      <h5><%= restaurant.name %></h5>
-    <% end %>
-  </div>
-</div>
 </div>
