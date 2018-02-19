@@ -23,6 +23,7 @@
           <li class="nav-item"><%= link_to('Admin', admin_restaurants_path, class: 'nav-link') %></li>
         <% end %>
           <li class="navbar-text">Hi, <%= current_user.email %></li>
+          <li class="nav-item navbar-nav "><%= link_to('Profile', user_path(current_user), class: 'nav-link') %></li> 
           <li class="nav-item navbar-nav "><%= link_to('Log out', destroy_user_session_path, method: :delete, class: 'nav-link') %></li> 
           <li class="nav-item navbar-nav "><%= link_to('Change password', edit_user_registration_path , class: 'nav-link') %></li>
         <% else %>
