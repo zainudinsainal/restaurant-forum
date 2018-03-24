@@ -14,6 +14,7 @@ class RestaurantsController < ApplicationController
   def favorite
     @restaurant = Restaurant.find(params[:id])
     @restaurant.favorites.create!(user: current_user)
+    # current_user.favorites.create(restaurant: @restaurant)
     redirect_back(fallback_location: root_path)
   end
 
