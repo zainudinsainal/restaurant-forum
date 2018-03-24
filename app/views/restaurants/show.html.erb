@@ -19,10 +19,13 @@
     <div class="col-md-8">
       <%= simple_format @restaurant.description %>
     </div>
+    <hr>
+    <%= link_to 'Favorite', favorite_restaurant_path(@restaurant), method: :post, class: "btn btn-primary" %>
+    <%= link_to 'Unfavorite', unfavorite_restaurant_path(@restaurant), method: :post, class: "btn btn-info" %>
 
     <div class="clearfix"></div>
 
-   
+
 
   </div>
    <hr>
@@ -45,7 +48,7 @@
     <hr>
     <% end %>
   </div>
-  
+
   <div class="col-md-12">
     <%= form_for [@restaurant, @comment] do |f| %>
     <div class="form-group">
@@ -57,7 +60,7 @@
     </div>
   <% end %>
   </div>
-   
+
   </div>
 </div>
 

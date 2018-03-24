@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  
+
   def index
     @restaurants = Restaurant.page(params[:page]).per(9)
     @categories = Category.all
@@ -10,5 +10,21 @@ class RestaurantsController < ApplicationController
     @comment = Comment.new
   end
 
-  
+   # POST /restaurants/:id/favorite
+  def favorite
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.favorites.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  # POST /restaurants/:id/unfavorite
+  def unfavorite
+    @restaurant = Restaurant.find(params[:id])
+
+    favorites = Favorite.where(restaurant: @restaurant, user: current_user)
+    favorites.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
+
 end
