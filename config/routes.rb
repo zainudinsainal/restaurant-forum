@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users
 
   resources :users, only: [:show, :edit, :update]
 
   resources :restaurants, only: [:index, :show] do
     resources :comments, only: [:create, :destroy]
+    member do
+      post :favorite
+      post :unfavorite
+    end
   end
 
   resources :categories, only: :show
