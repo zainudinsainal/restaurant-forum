@@ -4,10 +4,13 @@
     <li>
       <%= user.name %>
       <% if user != current_user %>
-        <!-- POST http://localhost:3000/followships?following_id={user.id} -->
-        <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
-        <!-- DELETE http://localhost:3000/followships/{user.id} -->
-        <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+        <% if current_user.following?(user) %>
+          <!-- DELETE http://localhost:3000/followships/{user.id} -->
+          <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+        <% else %>
+          <!--  POST http://localhost:3000/followships?following_id={user.id} -->
+          <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+        <% end %>
       <% end %>
     </li>
   <% end %>
