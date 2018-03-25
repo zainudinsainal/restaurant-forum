@@ -3,9 +3,12 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %>
-      <!-- http://localhost:3000/followships?following_id={user.id} -->
-      <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
-      <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+      <% if user != current_user %>
+        <!-- POST http://localhost:3000/followships?following_id={user.id} -->
+        <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+        <!-- DELETE http://localhost:3000/followships/{user.id} -->
+        <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+      <% end %>
     </li>
   <% end %>
 
